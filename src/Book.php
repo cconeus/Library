@@ -44,7 +44,7 @@
             $GLOBALS['DB']->exec("INSERT INTO authors_books (author_id, book_id) VALUES ({$this->getId()}, {$author->getId()});");
         }
 
-        function getAuthor()
+        function getAuthors()
         {
             $query = $GLOBALS['DB']->query("SELECT author_id FROM authors_books WHERE book_id = {$this->getId()};");
             $author_ids = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -57,9 +57,7 @@
 
                 $id = $returned_author[0]['id'];
                 $author_1 = $returned_author[0]['author_1'];
-                $author_2 = $returned_author[0]['author_2'];
-                $author_3 = $returned_author[0]['author_3'];
-                $new_author = new Author($id, $author_1, $author_2, $author_3);
+                $new_author = new Author($id, $author_1);
                 array_push($authors, $new_author);
             }
             return $authors;

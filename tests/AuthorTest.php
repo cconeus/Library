@@ -18,8 +18,8 @@
     {
         protected function tearDown()
         {
-            Author::deleteAll();
             Book::deleteAll();
+            Author::deleteAll();
         }
 
         function testSave()
@@ -27,9 +27,7 @@
             //Arrange
             $id = 1;
             $author_1 = "Michael Bennet";
-            $author_2 = "Benito the Great";
-            $author_3 = "Franklin Speckalepants III";
-            $test_author = new Author($id, $author_1, $author_2, $author_3);
+            $test_author = new Author($id, $author_1);
 
             //Act
             $test_author->save();
@@ -43,16 +41,12 @@
         {
             $id = 1;
             $author_1 = "Michael Bennet";
-            $author_2 = "Benito the Great";
-            $author_3 = "Franklin Speckalepants III";
-            $test_author = new Author($id, $author_1, $author_2, $author_3);
+            $test_author = new Author($id, $author_1);
             $test_author->save();
 
             $id2 = 2;
             $author_12 = "Michael Bennet";
-            $author_22 = "Benito the Great";
-            $author_32 = "Franklin Speckalepants III";
-            $test_author2 = new Author($id2, $author_12, $author_22, $author_32);
+            $test_author2 = new Author($id2, $author_12);
             $test_author2->save();
 
             $result = Author::getAll();
@@ -64,16 +58,12 @@
         {
             $id = 1;
             $author_1 = "Michael Bennet";
-            $author_2 = "Benito the Great";
-            $author_3 = "Franklin Speckalepants III";
-            $test_author = new Author($id, $author_1, $author_2, $author_3);
+            $test_author = new Author($id, $author_1);
             $test_author->save();
 
             $id2 = 2;
             $author_12 = "Michael Bennet";
-            $author_22 = "Benito the Great";
-            $author_32 = "Franklin Speckalepants III";
-            $test_author2 = new Author($id2, $author_12, $author_22, $author_32);
+            $test_author2 = new Author($id2, $author_12);
             $test_author2->save();
 
             $result = Author::find($test_author->getId());

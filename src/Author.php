@@ -4,30 +4,16 @@
     {
         private $id;
         private $author_1;
-        private $author_2;
-        private $author_3;
 
-        function __construct($id = null, $author_1, $author_2, $author_3)
+        function __construct($id = null, $author_1)
         {
             $this->id = $id;
             $this->author_1 = $author_1;
-            $this->author_2 = $author_2;
-            $this->author_3 = $author_3;
         }
 
         function setAuthor_1($new_author_1)
         {
             $this->author_1 = $new_author_1;
-        }
-
-        function setAuthor_2($new_author_2)
-        {
-            $this->author_2 = $new_author_2;
-        }
-
-        function setAuthor_3($new_author_3)
-        {
-            $this->author_3 = $new_author_3;
         }
 
         function getId()
@@ -38,16 +24,6 @@
         function getAuthor_1()
         {
             return $this->author_1;
-        }
-
-        function getAuthor_2()
-        {
-            return $this->author_2;
-        }
-
-        function getAuthor_3()
-        {
-            return $this->author_3;
         }
 
         //CRUD stuffs
@@ -77,7 +53,7 @@
         }
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO authors (author_1, author_2, author_3) VALUES ('{$this->getAuthor_1()}', '{$this->getAuthor_2()}', '{$this->getAuthor_3()}');");
+            $GLOBALS['DB']->exec("INSERT INTO authors (author_1) VALUES ('{$this->getAuthor_1()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -96,9 +72,7 @@
             foreach($returned_authors as $author) {
                 $id = $author['id'];
                 $author_1 = $author['author_1'];
-                $author_2 = $author['author_2'];
-                $author_3 = $author['author_3'];
-                $new_authors = new Author($id, $author_1, $author_2, $author_3);
+                $new_authors = new Author($id, $author_1);
                 array_push($authors, $new_authors);
             }
         return $authors;

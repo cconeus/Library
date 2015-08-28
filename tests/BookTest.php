@@ -65,9 +65,7 @@
 
             $id2 = 2;
             $author_1 = "Michael Bennet";
-            $author_2 = "Benito the Great";
-            $author_3 = "Franklin Speckalepants III";
-            $test_author = new Author($id2, $author_1, $author_2, $author_3);
+            $test_author = new Author($id2, $author_1);
             $test_author->save();
 
             $test_book->addAuthor($test_author);
@@ -105,17 +103,15 @@
 
             $id2 = 2;
             $author_1 = "Michael Bennet";
-            $author_2 = "Benito the Great";
-            $author_3 = "Franklin Speckalepants III";
-            $test_author = new Author($id2, $author_1, $author_2, $author_3);
+            $test_author = new Author($id2, $author_1);
             $test_author->save();
 
             $test_book->addAuthor($test_author);
 
-            $this->assertEquals($test_book->getAuthor(), [$test_author]);
+            $this->assertEquals($test_book->getAuthors(), [$test_author]);
         }
 
-        function testGetAuthor()
+        function testGetAuthors()
         {
             $id = 1;
             $title = "Moby Dick";
@@ -125,22 +121,18 @@
 
             $id2 = 2;
             $author_1 = "Michael Bennet";
-            $author_2 = "Benito the Great";
-            $author_3 = "Franklin Speckalepants III";
-            $test_author = new Author($id2, $author_1, $author_2, $author_3);
+            $test_author = new Author($id2, $author_1);
             $test_author->save();
 
             $id3 = 3;
             $author_12 = "Sir Hampton the Meek";
-            $author_22 = "Friviloso XIV";
-            $author_32 = "Hecklespench TreeFruug";
-            $test_author2 = new Author($id2, $author_12, $author_22, $author_32);
+            $test_author2 = new Author($id3, $author_12);
             $test_author2->save();
 
             $test_book->addAuthor($test_author);
             $test_book->addAuthor($test_author2);
 
-            $this->assertEquals($test_book->getAuthor(), [$test_author, $test_author2]);
+            $this->assertEquals($test_book->getAuthors(), [$test_author, $test_author2]);
         }
     }
  ?>
