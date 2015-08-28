@@ -27,12 +27,18 @@
         }
 
         //CRUD stuffs
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO authors (author_1) VALUES ('{$this->getAuthor_1()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
         function addBook($book)
         {
             $GLOBALS['DB']->exec("INSERT INTO authors_books (author_id, book_id) VALUES ({$book->getId()}, {$this->getId()});");
         }
 
-        function getBook()
+        function getBooks()
         {
             $query = $GLOBALS['DB']->query("SELECT book_id FROM authors_books WHERE author_id = {$this->getId()};");
             $book_ids = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -50,11 +56,6 @@
                 array_push($books, $new_book);
             }
             return $books;
-        }
-        function save()
-        {
-            $GLOBALS['DB']->exec("INSERT INTO authors (author_1) VALUES ('{$this->getAuthor_1()}');");
-            $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
         function delete()

@@ -71,7 +71,7 @@
             $test_book->addAuthor($test_author);
             $test_book->delete();
 
-            $this->assertEquals([], $test_author->getBook());
+            $this->assertEquals([], $test_author->getBooks());
         }
 
         function testFind()
@@ -95,15 +95,14 @@
 
         function testAddAuthor()
         {
-            $id = 1;
+            $id = null;
             $title = "Moby Dick";
             $synopsis = "A thrilling tale of whale hunting adventures";
             $test_book = new Book($id, $title, $synopsis);
             $test_book->save();
 
-            $id2 = 2;
             $author_1 = "Michael Bennet";
-            $test_author = new Author($id2, $author_1);
+            $test_author = new Author($id, $author_1);
             $test_author->save();
 
             $test_book->addAuthor($test_author);
@@ -113,20 +112,18 @@
 
         function testGetAuthors()
         {
-            $id = 1;
+            $id = null;
             $title = "Moby Dick";
             $synopsis = "A thrilling tale of whale hunting adventures";
             $test_book = new Book($id, $title, $synopsis);
             $test_book->save();
 
-            $id2 = 2;
             $author_1 = "Michael Bennet";
-            $test_author = new Author($id2, $author_1);
+            $test_author = new Author($id, $author_1);
             $test_author->save();
 
-            $id3 = 3;
             $author_12 = "Sir Hampton the Meek";
-            $test_author2 = new Author($id3, $author_12);
+            $test_author2 = new Author($id, $author_12);
             $test_author2->save();
 
             $test_book->addAuthor($test_author);
